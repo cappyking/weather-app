@@ -53,8 +53,7 @@ class GetWeatherViaPincode(APIView):
     def get(self, request):
         pincode = request.query_params.get("pincode")
         date = request.query_params.get("date")
-
-        if not date:
+        if date:
             # validates date, converts it into ist and then converts it into unix time
             unix_date = convert_date_to_unix(date)
         else:
@@ -115,7 +114,6 @@ class GetWeatherViaPincode(APIView):
         weather_data = get_weather_details(
             location_data["latitude"], location_data["longitude"], unix_date
         )
-        print(weather_data)
         # Save weather data in cache
         cache.set(f"weather_data_{pincode}_{unix_date}", weather_data)
 

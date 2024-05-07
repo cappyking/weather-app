@@ -5,7 +5,7 @@
 /env/
 
 # Ignore migration files
-/migrations/
+*/migrations/*
 
 # Ignore cache files
 *.cache
